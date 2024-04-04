@@ -2,7 +2,7 @@
 
 ## Trabajo de grado presentado como requisito para optar al título de: INGENIERO ELECTRÓNICO Y BIOINGENIERO
 
-Pontificia Universidad Javeriana
+Pontificia Universidad Javeriana de Bogotá, Colombia
 2024
 
 Autor:
