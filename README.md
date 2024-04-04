@@ -1,4 +1,4 @@
-#Diseño de un sistema de medición de temperatura en un biorreactor para el cultivo de Chlorella sp.
+# Diseño de un sistema de medición de temperatura en un biorreactor para el cultivo de Chlorella sp.
 
 ## Trabajo de grado presentado como requisito para optar al título de:
 INGENIERO ELECTRÓNICO Y BIOINGENIERO
