@@ -1,21 +1,38 @@
-Resultados_Analisis_DisenoFactorial #Se extraen los datos recolectados del Diseño factorial
-biorreactor.aov<-aov(ErrorBioflo~ Temperatura*Agitacion*Aireacion, data=Resultados_Analisis_DisenoFactorial) #Realiza un ANOVA utilizando el modelo lineal general (GLM) para la respuesta ErrorBioflo, evaluando los efectos principales y las interacciones de los factores Temperatura, Agitación y Aireación. Los datos provienen de Resultados_Analisis_DisenoFactorial.
+#Se extraen los datos recolectados del Diseño factorial
+Resultados_Analisis_DisenoFactorial
+
+
+# Realiza un ANOVA utilizando el modelo lineal general (GLM) para la respuesta ErrorBioflo, evaluando los 
+# efectos principales y las interacciones de los factores Temperatura, Agitación y Aireación. 
+# Los datos provienen de Resultados_Analisis_DisenoFactorial.
+biorreactor.aov<-aov(ErrorBioflo~ Temperatura*Agitacion*Aireacion, data=Resultados_Analisis_DisenoFactorial)
+
 biorreactor.aov #Imprime el objeto biorreactor.aov, que contiene los resultados del ANOVA.
-summary(biorreactor.aov) #Proporciona un resumen detallado del ANOVA, incluyendo las estadísticas de significancia para los efectos principales y las interacciones.
-plot(biorreactor.aov) #Genera gráficos diagnósticos del ajuste del modelo ANOVA para evaluar suposiciones como normalidad y homogeneidad de varianzas.
+
+# Proporciona un resumen detallado del ANOVA, incluyendo las estadísticas de 
+# significancia para los efectos principales y las interacciones.
+summary(biorreactor.aov)
+
+#Genera gráficos diagnósticos del ajuste del modelo ANOVA para evaluar suposiciones como normalidad y homogeneidad de varianzas.
+plot(biorreactor.aov) 
+
 residuales<-resid(biorreactor.aov) #Calcula los residuales del modelo ANOVA y los almacena en residuales.
 residuales #Imprime los valores residuales calculados.
 
-# Asegurar que los paquetes necesarios estén instalados
+# Asegurar que los paquetes necesarios estén instaladoss
 if (!requireNamespace("car", quietly = TRUE)) {
   install.packages("car")
 }
 
 library(car) #Carga la biblioteca car, utilizada para pruebas estadísticas adicionales como la prueba de Levene.
 
-attach(Resultados_Analisis_DisenoFactorial) #Hace que las columnas del dataframe Resultados_Analisis_DisenoFactorial estén disponibles como variables en el espacio de trabajo de R. Esto facilita su uso en funciones subsecuentes sin necesidad de especificar el dataframe.
+# Hace que las columnas del dataframe Resultados_Analisis_DisenoFactorial
+# estén disponibles como variables en el espacio de trabajo de R. 
+# Esto facilita su uso en funciones subsecuentes sin necesidad de especificar el dataframe.
+attach(Resultados_Analisis_DisenoFactorial) 
 
-# Realiza la prueba de Levene para evaluar la homogeneidad de las varianzas de los residuales para cada uno de los factores Temperatura, Agitación y Aireación.
+# Realiza la prueba de Levene para evaluar la homogeneidad de las varianzas de los
+# residuales para cada uno de los factores Temperatura, Agitación y Aireación.
 leveneTest(residuales, Temperatura)
 leveneTest(residuales, Agitacion)
 leveneTest(residuales, Aireacion)
@@ -39,7 +56,8 @@ if (!requireNamespace("agricolae", quietly = TRUE)) {
 library(agricolae) #Carga la biblioteca agricolae, utilizada para análisis estadísticos en agricultura, incluyendo pruebas post-hoc
 
 
-# Realiza la prueba post-hoc de Tukey para comparaciones múltiples de medias entre los niveles de cada factor (Temperatura, Agitación, Aireación), y almacena los resultados.
+# Realiza la prueba post-hoc de Tukey para comparaciones múltiples de medias
+# entre los niveles de cada factor (Temperatura, Agitación, Aireación), y almacena los resultados.
 Tukey<-HSD.test(biorreactor.aov, "Temperatura")
 Tukey
 Tukey2<-HSD.test(biorreactor.aov, "Agitacion")
